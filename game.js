@@ -73,6 +73,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 totalMoney += 10; // Passive income from commercial buildings
             } else if (building.type === 'industrial') {
                 totalElectricity += 10; // Passive energy production from industrial buildings
+            } else if (building.type === 'waterFactory') {
+                totalWater += 50; // Passive water production from water factory
+            } else if (building.type === 'ecoCleaningService') {
+                totalWaste -= 20; // Passive waste reduction from eco cleaning service
             }
         });
 
