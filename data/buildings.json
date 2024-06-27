@@ -22,7 +22,7 @@
     {
         "type": "industrial",
         "cost": 300,
-        "electricity": -20,
+        "electricity": 10,  // Produces electricity
         "water": -20,
         "waste": 20,
         "citizens": 30,
@@ -48,5 +48,25 @@
         "citizens": 0,
         "happiness": 5,
         "color": "orange"
+    },
+    {
+        "type": "waterFactory",
+        "cost": 400,
+        "electricity": -15,
+        "water": 50,  // Produces water
+        "waste": 10,
+        "citizens": 5,
+        "happiness": 5,
+        "color": "lightblue"
+    },
+    {
+        "type": "ecoCleaningService",
+        "cost": 250,
+        "electricity": -5,
+        "water": -5,
+        "waste": -20,  // Reduces waste
+        "citizens": 0,
+        "happiness": 10,
+        "color": "lightgreen"
     }
 ]
