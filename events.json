@@ -1,0 +1,17 @@
+[
+    {
+        "event": "earthquake",
+        "effect": {
+            "buildingsDestroyed": 2,
+            "money": -200,
+            "happiness": -20
+        }
+    },
+    {
+        "event": "economicBoom",
+        "effect": {
+            "money": 500,
+            "happiness": 10
+        }
+    }
+]
