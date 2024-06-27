@@ -1,0 +1,52 @@
+[
+    {
+        "type": "residential",
+        "cost": 100,
+        "electricity": -5,
+        "water": -5,
+        "waste": 5,
+        "citizens": 10,
+        "happiness": 5,
+        "color": "blue"
+    },
+    {
+        "type": "commercial",
+        "cost": 200,
+        "electricity": -10,
+        "water": -10,
+        "waste": 10,
+        "citizens": 20,
+        "happiness": 10,
+        "color": "yellow"
+    },
+    {
+        "type": "industrial",
+        "cost": 300,
+        "electricity": -20,
+        "water": -20,
+        "waste": 20,
+        "citizens": 30,
+        "happiness": -10,
+        "color": "brown"
+    },
+    {
+        "type": "park",
+        "cost": 50,
+        "electricity": 0,
+        "water": 0,
+        "waste": -5,
+        "citizens": 0,
+        "happiness": 20,
+        "color": "green"
+    },
+    {
+        "type": "solarPlant",
+        "cost": 500,
+        "electricity": 50,
+        "water": -10,
+        "waste": 0,
+        "citizens": 0,
+        "happiness": 5,
+        "color": "orange"
+    }
+]
