@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCity Tycoon</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="sidebar">
+            <h2>EcoCity Tycoon</h2>
+            <div id="resources">
+                <p>Money: <span id="money">1000</span></p>
+                <p>Electricity: <span id="electricity">100</span></p>
+                <p>Water: <span id="water">100</span></p>
+                <p>Waste: <span id="waste">0</span></p>
+                <p>Citizens: <span id="citizens">100</span></p>
+                <p>Happiness: <span id="happiness">75</span></p>
+            </div>
+            <div id="building-options">
+                <h3>Build</h3>
+                <button data-type="residential">Residential</button>
+                <button data-type="commercial">Commercial</button>
+                <button data-type="industrial">Industrial</button>
+                <button data-type="park">Park</button>
+                <button data-type="solarPlant">Solar Plant</button>
+            </div>
+        </div>
+        <canvas id="game-canvas"></canvas>
+        <div id="menus">
+            <!-- Detailed menus for managing the city -->
+        </div>
+        <div id="alerts">
+            <!-- Notifications for events -->
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
