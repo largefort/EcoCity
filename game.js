@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const gameState = {
         resources: {
-            money: 1000,
+            money: 1000000,
             electricity: 100,
             water: 100,
             waste: 0,
