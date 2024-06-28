@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const gameState = {
         resources: {
-            money: 1000000,
+            money: 1000,
             electricity: 100,
             water: 100,
             waste: 0,
@@ -40,14 +40,55 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => eventsData = data);
 
     function drawGrid() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
         const gridSize = 50;
-        ctx.strokeStyle = '#ddd';
+        const backgroundColor = '#f0f0f0';
+        const lineColor = '#ddd';
+        const highlightColor = '#c0c0c0';
+
+        // Draw background
+        ctx.fillStyle = backgroundColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw grid lines
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 1;
+
         for (let x = 0; x < canvas.width; x += gridSize) {
             for (let y = 0; y < canvas.height; y += gridSize) {
-                ctx.strokeRect(x, y, gridSize, gridSize);
+                ctx.beginPath();
+                ctx.rect(x, y, gridSize, gridSize);
+                ctx.stroke();
             }
         }
+
+        // Highlight hovered cell
+        canvas.addEventListener('mousemove', function(event) {
+            const mouseX = event.offsetX;
+            const mouseY = event.offsetY;
+            const gridX = Math.floor(mouseX / gridSize) * gridSize;
+            const gridY = Math.floor(mouseY / gridSize) * gridSize;
+
+            // Redraw the grid to clear previous highlights
+            ctx.fillStyle = backgroundColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 1;
+
+            for (let x = 0; x < canvas.width; x += gridSize) {
+                for (let y = 0; y < canvas.height; y += gridSize) {
+                    ctx.beginPath();
+                    ctx.rect(x, y, gridSize, gridSize);
+                    ctx.stroke();
+                }
+            }
+
+            // Draw highlight
+            ctx.fillStyle = highlightColor;
+            ctx.fillRect(gridX, gridY, gridSize, gridSize);
+
+            // Redraw buildings
+            drawBuildings();
+        });
     }
 
     function drawBuildings() {
