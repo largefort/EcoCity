@@ -98,26 +98,66 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    function showPopup(text, x, y) {
+        const popup = document.createElement('div');
+        popup.textContent = text;
+        popup.style.position = 'absolute';
+        popup.style.left = `${x + canvas.offsetLeft}px`;
+        popup.style.top = `${y + canvas.offsetTop}px`;
+        popup.style.background = 'rgba(255, 255, 255, 0.8)';
+        popup.style.padding = '5px';
+        popup.style.border = '1px solid #ddd';
+        popup.style.borderRadius = '3px';
+        popup.style.pointerEvents = 'none';
+        document.body.appendChild(popup);
+
+        setTimeout(() => {
+            popup.style.transition = 'opacity 1s';
+            popup.style.opacity = '0';
+            setTimeout(() => popup.remove(), 1000);
+        }, 500);
+    }
+
     function updateResources() {
         let totalElectricity = 0;
         let totalWater = 0;
         let totalWaste = 0;
         let totalMoney = 0;
+        let totalCitizens = 0;
+        let totalHappiness = 0;
 
         gameState.buildings.forEach(building => {
             const buildingData = buildingsData.find(b => b.type === building.type);
             totalElectricity += buildingData.electricity;
             totalWater += buildingData.water;
             totalWaste += buildingData.waste;
+            totalHappiness += buildingData.happiness;
 
             if (building.type === 'commercial') {
                 totalMoney += 10; // Passive income from commercial buildings
+                showPopup(`+$10`, building.x, building.y);
             } else if (building.type === 'industrial') {
                 totalElectricity += 10; // Passive energy production from industrial buildings
+                showPopup(`+10 Energy`, building.x, building.y);
             } else if (building.type === 'waterFactory') {
                 totalWater += 50; // Passive water production from water factory
+                showPopup(`+50 Water`, building.x, building.y);
             } else if (building.type === 'ecoCleaningService') {
                 totalWaste -= 20; // Passive waste reduction from eco cleaning service
+                showPopup(`-20 Waste`, building.x, building.y);
+            } else if (building.type === 'residential') {
+                totalCitizens += 5; // Citizens production from residential buildings
+                gameState.happiness -= 0.1; // Decrease happiness slightly
+                showPopup(`+5 Citizens`, building.x, building.y);
+            } else if (building.type === 'park') {
+                totalHappiness += 5; // Happiness production from parks
+                if (gameState.happiness < 100) {
+                    gameState.happiness += 0.5; // Increase happiness to a max of 100
+                    showPopup(`+0.5 Happiness`, building.x, building.y);
+                }
+            } else if (building.type === 'solarPlant') {
+                totalElectricity += 50; // Passive energy production from solar plants
+                showPopup(`+50 Energy`, building.x, building.y);
             }
         });
 
@@ -125,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
         gameState.resources.electricity += totalElectricity;
         gameState.resources.water += totalWater;
         gameState.resources.waste += totalWaste;
+        gameState.citizens += totalCitizens;
 
         updateResourcesUI();
     }
